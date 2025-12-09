@@ -639,6 +639,13 @@ width: 45%
       color: var(--gray-600);
     }
 
+    .summary-fin-hint {
+      margin-top: 2px;
+      font-size: 11px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+
     .summary-fin-final-value {
       font-size: 18px;
       font-weight: 700;

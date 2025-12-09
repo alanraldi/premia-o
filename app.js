@@ -284,6 +284,33 @@ const apiBase = "http://localhost:8000";
     return (alvo2 / totalDiasMes) * diasFolga;
   }
 
+  function getCompensacaoHint(alvo2, detalhesDia) {
+    const totalDiasMes = detalhesDia?.qt_dias_mes ?? 0;
+    const diasFolga = detalhesDia?.qt_dias_folga ?? 0;
+    const alvo2Number = Number(alvo2) || 0;
+
+    if (!detalhesDia) {
+      return "Comp. ausência = 0 (sem detalhes de dias no período).";
+    }
+
+    if (!alvo2Number) {
+      return "Comp. ausência = 0 (Alvo 2 não informado).";
+    }
+
+    if (totalDiasMes <= 0) {
+      return "Comp. ausência = 0 (total de dias do mês não informado).";
+    }
+
+    if (diasFolga <= 0) {
+      return "Comp. ausência = 0 (sem dias de folga/ausência autorizada).";
+    }
+
+    const diaria = alvo2Number / totalDiasMes;
+    const valor = diaria * diasFolga;
+
+    return `Comp. ausência = (${formatCurrency(alvo2Number)} ÷ ${totalDiasMes} dias) × ${diasFolga} dia(s) = ${formatCurrency(valor)}`;
+  }
+
   function renderResumoFinanceiro(data, detalhesDia, metas) {
     const box = document.getElementById("summaryFinance");
     const finalCard = document.getElementById("finPremioFinalGlobal");
@@ -317,6 +344,10 @@ const apiBase = "http://localhost:8000";
     const compMerc = calcularCompensacao(data.mercantil_alvo_2, detalhesDia);
     const compServ = calcularCompensacao(data.servicos_alvo_2, detalhesDia);
     const compCdc  = calcularCompensacao(data.cdc_alvo_2, detalhesDia);
+
+    const compMercHint = getCompensacaoHint(data.mercantil_alvo_2, detalhesDia);
+    const compServHint = getCompensacaoHint(data.servicos_alvo_2, detalhesDia);
+    const compCdcHint  = getCompensacaoHint(data.cdc_alvo_2, detalhesDia);
 
     /* REALIZADO TOTAL PARA META (mesma lógica que você vinha usando) */
     const mercRealTotal = mercReal + mercBonusHalf + compMerc;
@@ -399,6 +430,7 @@ const apiBase = "http://localhost:8000";
         <div><span class="label">Loja:</span> ${formatCurrency(mercLoja)}</div>
         <div><span class="label">On-line:</span> ${formatCurrency(mercOn)}</div>
         <div><span class="label">Comp. ausência:</span> ${formatCurrency(compMerc)}</div>
+        <div class="summary-fin-hint">${compMercHint}</div>
       </div>
     `;
 
@@ -437,6 +469,7 @@ const apiBase = "http://localhost:8000";
         <div><span class="label">Base:</span> ${formatCurrency(mercReal)}</div>
         <div><span class="label">+ 50% Incentivo:</span> ${formatCurrency(mercBonusHalf)}</div>
         <div><span class="label">+ Comp. ausência:</span> ${formatCurrency(compMerc)}</div>
+        <div class="summary-fin-hint">${compMercHint}</div>
       </div>
     `;
 
@@ -524,6 +557,7 @@ const apiBase = "http://localhost:8000";
         <div><span class="label">Loja:</span> ${formatCurrency(servLoja)}</div>
         <div><span class="label">On-line:</span> ${formatCurrency(servOn)}</div>
         <div><span class="label">Comp. ausência:</span> ${formatCurrency(compServ)}</div>
+        <div class="summary-fin-hint">${compServHint}</div>
       </div>
     `;
 
@@ -536,6 +570,7 @@ const apiBase = "http://localhost:8000";
         <div><span class="label">Faixa de meta:</span> ${servAlvoInfo.labelText}</div>
         <div><span class="label">Base:</span> ${formatCurrency(servReal)}</div>
         <div><span class="label">+ Comp. ausência:</span> ${formatCurrency(compServ)}</div>
+        <div class="summary-fin-hint">${compServHint}</div>
       </div>
     `;
 
@@ -575,6 +610,7 @@ const apiBase = "http://localhost:8000";
         <div><span class="label">Loja:</span> ${formatCurrency(cdcLoja)}</div>
         <div><span class="label">On-line:</span> ${formatCurrency(cdcOn)}</div>
         <div><span class="label">Comp. ausência:</span> ${formatCurrency(compCdc)}</div>
+        <div class="summary-fin-hint">${compCdcHint}</div>
       </div>
     `;
 
@@ -587,6 +623,7 @@ const apiBase = "http://localhost:8000";
         <div><span class="label">Faixa de meta:</span> ${cdcAlvoInfo.labelText}</div>
         <div><span class="label">Base:</span> ${formatCurrency(cdcReal)}</div>
         <div><span class="label">+ Comp. ausência:</span> ${formatCurrency(compCdc)}</div>
+        <div class="summary-fin-hint">${compCdcHint}</div>
       </div>
     `;
 

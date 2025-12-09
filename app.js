@@ -311,6 +311,27 @@ const apiBase = "http://localhost:8000";
     return `Comp. ausência = (${formatCurrency(alvo2Number)} ÷ ${totalDiasMes} dias) × ${diasFolga} dia(s) = ${formatCurrency(valor)}`;
   }
 
+  function escapeAttribute(text) {
+    if (!text) return "";
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function buildHintBubble(text, label = "Como calculamos a compensação") {
+    const safe = escapeAttribute(text);
+    if (!safe) return "";
+
+    return `
+      <span class="hint-inline" title="${safe}">
+        <span class="hint-icon">i</span>
+        <span class="hint-label">${label}</span>
+      </span>
+    `;
+  }
+
   function renderResumoFinanceiro(data, detalhesDia, metas) {
     const box = document.getElementById("summaryFinance");
     const finalCard = document.getElementById("finPremioFinalGlobal");
@@ -345,9 +366,15 @@ const apiBase = "http://localhost:8000";
     const compServ = calcularCompensacao(data.servicos_alvo_2, detalhesDia);
     const compCdc  = calcularCompensacao(data.cdc_alvo_2, detalhesDia);
 
-    const compMercHint = getCompensacaoHint(data.mercantil_alvo_2, detalhesDia);
-    const compServHint = getCompensacaoHint(data.servicos_alvo_2, detalhesDia);
-    const compCdcHint  = getCompensacaoHint(data.cdc_alvo_2, detalhesDia);
+    const compMercHint = buildHintBubble(
+      getCompensacaoHint(data.mercantil_alvo_2, detalhesDia)
+    );
+    const compServHint = buildHintBubble(
+      getCompensacaoHint(data.servicos_alvo_2, detalhesDia)
+    );
+    const compCdcHint  = buildHintBubble(
+      getCompensacaoHint(data.cdc_alvo_2, detalhesDia)
+    );
 
     /* REALIZADO TOTAL PARA META (mesma lógica que você vinha usando) */
     const mercRealTotal = mercReal + mercBonusHalf + compMerc;

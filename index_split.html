@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Portal Administrativo - Extrato Premiação</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-badge">CASAS BAHIA</div>
+    <div class="topbar-title">Portal Administrativo do Colaborador</div>
+  </div>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-user">
+    <span>João Martins</span>
+    <div class="avatar">JM</div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section-title">Aplicações</div>
+    <ul class="sidebar-menu">
+      <li class="sidebar-item">
+        <a class="sidebar-link active" href="#">
+          <span class="icon">💰</span>
+          <span>Remuneração Varejo</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-subtitle">Extrato Premiação</div>
+    <ul class="sidebar-menu">
+      <li class="sidebar-item">
+        <a class="sidebar-link active" href="#">
+          <span class="icon">📊</span>
+          <span>Consultar - Vendedor</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" href="#">
+          <span class="icon">📑</span>
+          <span>Extrato Comissão</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <div class="breadcrumb">
+      <span>Remuneração Varejo</span>
+      <span>Extrato Premiação</span>
+      <span>Consultar - Vendedor</span>
+    </div>
+
+    <div class="page-header">
+      <div>
+        <div class="page-title">Extrato Premiação – Vendedor</div>
+        <div class="page-subtitle" id="pageSubtitle"></div>
+      </div>
+      <div class="header-right">
+        <button class="primary-btn" id="btnMesAtual">Visualizar Mês Atual</button>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="field">
+        <label for="matriculaInput">Matrícula</label>
+        <input id="matriculaInput" type="number" value="4693760">
+      </div>
+      <div class="field">
+        <button class="primary-btn" id="btnBuscar">Buscar extrato</button>
+      </div>
+      <div class="status-msg" id="statusMsg"></div>
+    </div>
+
+    <section class="card">
+      <div class="card-title">Dados do colaborador</div>
+      <div class="card-subtitle">Informações usadas para o extrato de premiação</div>
+      <div class="card-row" id="colaboradorInfo"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">Ganhos do mês atual</div>
+      <div class="card-subtitle-row">
+        <div class="card-subtitle" id="ganhosSubtitle"></div>
+        <button class="secondary-btn" id="btnMetasMes">Metas do mês</button>
+      </div>
+
+      <!-- RESUMO DE PRESENÇA -->
+      <div class="summary-days" id="summaryDays" style="display:none;">
+        <div class="summary-days-left">
+          Resumo de presença no mês
+        </div>
+        <div class="summary-days-right">
+          <div class="summary-grid">
+            <div class="summary-grid-main">
+              <div class="summary-row">
+                <div class="summary-item" id="itemTotalMes"></div>
+                <div class="summary-item" id="itemDiasMes"></div>
+                <div class="summary-item" id="itemFolga"></div>
+              </div>
+              <div class="summary-row">
+                <div class="summary-item" id="itemSubstituicao"></div>
+                <div class="summary-item" id="itemOutros"></div>
+                <div class="summary-item" id="itemInconsistentes"></div>
+              </div>
+            </div>
+            <div class="summary-highlight" id="itemDiasAcm"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESUMO FINANCEIRO + REALIZADO TOTAL / PREMIAÇÃO / MULTIPLICADOR / VALOR TOTAL -->
+      <div class="summary-finance" id="summaryFinance" style="display:none;">
+
+        <!-- Linha 1: Mercantil -->
+        <div class="summary-fin-row">
+          <div class="summary-fin-group">
+            <div class="summary-fin-card mercantil" id="finMercantilBase"></div>
+            <div class="summary-fin-card mercantil" id="finMercantilBonus"></div>
+            <div class="summary-fin-card mercantil" id="finMercantilBonus50"></div>
+          </div>
+          <div class="summary-fin-total-card mercantil" id="finMercantilTotalCard"></div>
+          <div class="summary-fin-total-card mercantil" id="finMercantilPremioCard"></div>
+          <div class="summary-fin-total-card mercantil" id="finMercantilMultiCard"></div>
+          <div class="summary-fin-total-card mercantil" id="finMercantilValorTotalCard"></div>
+        </div>
+
+        <!-- Linha 2: Produto Estrela -->
+        <div class="summary-fin-row">
+          <div class="summary-fin-line">
+            <div class="summary-fin-card estrela" id="finEstrela"></div>
+          </div>
+          <div class="summary-fin-total-card estrela" id="finEstrelaTotalCard"></div>
+          <div class="summary-fin-total-card estrela" id="finEstrelaPremioCard"></div>
+          <div class="summary-fin-total-card estrela" id="finEstrelaMultiCard"></div>
+          <div class="summary-fin-total-card estrela" id="finEstrelaValorTotalCard"></div>
+        </div>
+
+        <!-- Linha 3: Serviços -->
+        <div class="summary-fin-row">
+          <div class="summary-fin-line">
+            <div class="summary-fin-card servicos" id="finServicos"></div>
+          </div>
+          <div class="summary-fin-total-card servicos" id="finServicosTotalCard"></div>
+          <div class="summary-fin-total-card servicos" id="finServicosPremioCard"></div>
+          <div class="summary-fin-total-card servicos" id="finServicosMultiCard"></div>
+          <div class="summary-fin-total-card servicos" id="finServicosValorTotalCard"></div>
+        </div>
+
+        <!-- Linha 4: CDC -->
+        <div class="summary-fin-row">
+          <div class="summary-fin-line">
+            <div class="summary-fin-card cdc" id="finCdc"></div>
+          </div>
+          <div class="summary-fin-total-card cdc" id="finCdcTotalCard"></div>
+          <div class="summary-fin-total-card cdc" id="finCdcPremioCard"></div>
+          <div class="summary-fin-total-card cdc" id="finCdcMultiCard"></div>
+          <div class="summary-fin-total-card cdc" id="finCdcValorTotalCard"></div>
+        </div>
+
+        <!-- Valor Final Global -->
+        <div class="summary-fin-final-card" id="finPremioFinalGlobal" style="display:none;"></div>
+      </div>
+
+      <div class="results-layout">
+        <div class="result-card" id="mercantilCard"></div>
+        <div class="result-card" id="produtoEstrelaCard"></div>
+        <div class="result-card" id="servicosCard"></div>
+        <div class="result-card" id="cdcCard"></div>
+      </div>
+
+      <div class="footer-note">
+        Os valores são para acompanhamento diário e não para fins de remuneração,
+        podendo sofrer alterações até o fechamento do mês.
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- MODAL METAS DO MÊS -->
+<div class="modal-overlay" id="metasModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="metasModalTitle">Metas e premiação do mês</div>
+      <button class="modal-close" id="metasModalClose">&times;</button>
+    </div>
+    <div id="metasModalBody"></div>
+  </div>
+</div>
+
+  <script src="app.js"></script>
+</body>
+</html>

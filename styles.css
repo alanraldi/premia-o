@@ -1,0 +1,947 @@
+:root {
+      --blue-main: #0052cc;
+      --blue-dark: #00338c;
+      --blue-light: #e5efff;
+      --gray-bg: #f4f5f7;
+      --gray-100: #e1e4eb;
+      --gray-200: #c1c7d0;
+      --gray-600: #5e6c84;
+      --gray-800: #172b4d;
+      --accent-orange: #ff9f1a;
+      --accent-green: #36b37e;
+      --accent-red: #ff5630;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--gray-bg);
+      color: var(--gray-800);
+    }
+
+    /* TOPBAR */
+    .topbar {
+      height: 56px;
+      background: var(--blue-main);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-badge {
+      background: #fff;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--blue-main);
+    }
+
+    .topbar-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .topbar-spacer { flex: 1; }
+
+    .topbar-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--blue-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 56px);
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 250px;
+      background: #fff;
+      border-right: 1px solid var(--gray-100);
+      padding: 20px 16px;
+    }
+
+    .sidebar-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar-item { margin-bottom: 6px; }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--gray-800);
+      font-size: 13px;
+    }
+
+    .sidebar-link span.icon { font-size: 14px; }
+
+    .sidebar-link.active {
+      background: var(--blue-light);
+      color: var(--blue-main);
+      font-weight: 600;
+    }
+
+    .sidebar-subtitle {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      margin: 16px 2px 6px;
+      letter-spacing: 0.03em;
+    }
+
+    /* CONTEÚDO */
+    .content {
+      flex: 1;
+      padding: 24px 32px;
+      max-width: 1200px;
+    }
+
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--gray-600);
+      margin-bottom: 6px;
+    }
+
+    .breadcrumb span + span::before {
+      content: ">";
+      margin: 0 6px;
+      color: var(--gray-200);
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .page-subtitle {
+      font-size: 12px;
+      color: var(--gray-600);
+    }
+
+    .header-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .primary-btn {
+      border-radius: var(--radius-pill);
+      background: var(--blue-main);
+      border: none;
+      color: #fff;
+      padding: 7px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .primary-btn:hover { background: var(--blue-dark); }
+
+    .secondary-btn {
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--blue-main);
+      background: #fff;
+      color: var(--blue-main);
+      padding: 5px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .secondary-btn:hover {
+      background: var(--blue-light);
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .field label { color: var(--gray-600); }
+
+    .field input {
+      border-radius: 8px;
+      border: 1px solid var(--gray-100);
+      padding: 6px 8px;
+      font-size: 13px;
+      min-width: 160px;
+    }
+
+    .status-msg {
+      font-size: 12px;
+      min-height: 16px;
+    }
+
+    .status-msg.error { color: #c0392b; }
+
+    /* CARDS GENÉRICOS */
+    .card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 2px 6px rgba(9, 30, 66, .15);
+      padding: 16px 18px;
+      margin-bottom: 18px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: var(--gray-600);
+    }
+
+    .card-subtitle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 2px;
+      margin-bottom: 4px;
+    }
+
+    .card-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .card-row span.label {
+      color: var(--gray-600);
+      font-weight: 500;
+      margin-right: 4px;
+    }
+
+    /* BLOCO RESUMO DIAS */
+    .summary-days {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 10px 0 6px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #eef3ff;
+      font-size: 12px;
+      color: var(--gray-800);
+      flex-wrap: wrap;
+    }
+
+    .summary-days-left {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .summary-days-right { flex: 1; }
+
+    .summary-grid {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .summary-grid-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .summary-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .summary-item {
+      flex: 1;
+      background: #fff;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      box-shadow: 0 1px 3px rgba(9, 30, 66, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-width: 130px;
+    }
+
+    .summary-label {
+      font-size: 11px;
+      color: var(--gray-600);
+      margin-bottom: 2px;
+    }
+
+    .summary-value {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--blue-dark);
+    }
+
+    .summary-highlight {
+      min-width: 180px;
+      max-width: 210px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 10px 14px;
+      box-shadow: 0 2px 5px rgba(9, 30, 66, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .summary-highlight .summary-value {
+      font-size: 20px;
+      color: var(--accent-orange);
+    }
+
+/* RESUMO FINANCEIRO */
+.summary-finance {
+  margin: 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+/* Cada linha do resumo financeiro (Mercantil, Produto Estrela, Serviços, CDC) */
+.summary-fin-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* PRIMEIRA COLUNA (TIPO)
+   - Linha 1: [Mercantil] + [Incentivo LL/Móveis] + [Incentivo LL/Móveis x 0,5] empilhados
+   - Linhas 2, 3, 4: [Produto Estrela], [Serviços], [CDC]
+   Todas com a MESMA largura, para alinhar as demais colunas. */
+.summary-fin-group,
+.summary-fin-line {
+  flex: 0 0 270px;       /* largura fixa da coluna de tipo */
+  display: flex;
+width: 45%
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Os cards dentro da primeira coluna (1 ou 3 cards) */
+.summary-fin-group .summary-fin-card,
+.summary-fin-line .summary-fin-card {
+  flex: 1 1 auto;
+
+  min-width: 0;
+}
+
+/* DEMAIS COLUNAS (C2, C3, C4, C5:
+   Realizado Total, Premiação, Multiplicador x2, Valor Total) */
+.summary-fin-total-card {
+  flex: 1 1 0;
+}
+
+
+
+    .summary-fin-card {
+      background: #f7f8fc;
+      border-radius: 8px;
+      padding: 4px 6px;
+      box-shadow: 0 1px 2px rgba(9, 30, 66, 0.15);
+      font-size: 9px;
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .summary-fin-group .summary-fin-card {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .summary-fin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1px;
+    }
+
+    .summary-fin-title {
+      font-weight: 600;
+      font-size: 9px;
+    }
+
+    .summary-fin-tag {
+      font-size: 8px;
+      padding: 1px 4px;
+      border-radius: 999px;
+      background: #e1e4eb;
+      color: var(--gray-800);
+    }
+
+    .summary-fin-label {
+      font-size: 8px;
+      color: var(--gray-600);
+    }
+
+    .summary-fin-value {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 1px 0 2px;
+    }
+
+    .summary-fin-details {
+      font-size: 8px;
+      color: var(--gray-600);
+      line-height: 1.25;
+    }
+
+    .summary-fin-details span.label {
+      font-weight: 500;
+      margin-right: 3px;
+    }
+
+    .summary-fin-card.mercantil {
+      border-top: 2px solid var(--blue-main);
+    }
+    .summary-fin-card.mercantil .summary-fin-value {
+      color: var(--blue-dark);
+    }
+
+    .summary-fin-card.estrela {
+      border-top: 2px solid var(--accent-orange);
+    }
+    .summary-fin-card.estrela .summary-fin-value {
+      color: var(--accent-orange);
+    }
+
+    .summary-fin-card.servicos {
+      border-top: 2px solid var(--accent-green);
+    }
+    .summary-fin-card.servicos .summary-fin-value {
+      color: var(--accent-green);
+    }
+
+    .summary-fin-card.cdc {
+      border-top: 2px solid var(--accent-red);
+    }
+    .summary-fin-card.cdc .summary-fin-value {
+      color: var(--accent-red);
+    }
+
+    /* REALIZADO TOTAL + PREMIAÇÃO + MULTIPLICADOR + VALOR TOTAL */
+    .summary-fin-total-card {
+      flex: 1;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(9, 30, 66, 0.18);
+      padding: 4px 6px;
+      font-size: 9px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #fff;
+      min-height: 70px;
+    }
+
+    .summary-fin-total-title {
+      font-size: 9px;
+      font-weight: 700;
+      margin-bottom: 1px;
+      color: var(--gray-800);
+    }
+
+    .summary-fin-total-sub {
+      font-size: 8px;
+      color: var(--gray-600);
+      margin-bottom: 3px;
+    }
+
+    .summary-fin-total-value {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .summary-fin-total-extra {
+      font-size: 8px;
+      color: var(--gray-600);
+      margin-top: 2px;
+      line-height: 1.2;
+    }
+
+    .summary-fin-total-extra span.label {
+      font-weight: 500;
+      margin-right: 3px;
+    }
+
+    .summary-fin-total-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .summary-fin-total-card.mercantil {
+      border-top: 2px solid var(--blue-main);
+      background: #f7f8fc;
+    }
+    .summary-fin-total-card.mercantil .summary-fin-total-value {
+      color: var(--blue-dark);
+    }
+    .summary-fin-total-card.mercantil .summary-fin-total-badge {
+      background: #e5efff;
+      color: var(--blue-dark);
+    }
+
+    .summary-fin-total-card.estrela {
+      border-top: 2px solid var(--accent-orange);
+      background: #fff4df;
+    }
+    .summary-fin-total-card.estrela .summary-fin-total-value {
+      color: var(--accent-orange);
+    }
+    .summary-fin-total-card.estrela .summary-fin-total-badge {
+      background: #ffe3b0;
+      color: #b35b00;
+    }
+
+    .summary-fin-total-card.servicos {
+      border-top: 2px solid var(--accent-green);
+      background: #e7f9f1;
+    }
+    .summary-fin-total-card.servicos .summary-fin-total-value {
+      color: var(--accent-green);
+    }
+    .summary-fin-total-card.servicos .summary-fin-total-badge {
+      background: #c6f1df;
+      color: #1b8066;
+    }
+
+    .summary-fin-total-card.cdc {
+      border-top: 2px solid var(--accent-red);
+      background: #ffe3e0;
+    }
+    .summary-fin-total-card.cdc .summary-fin-total-value {
+      color: var(--accent-red);
+    }
+    .summary-fin-total-card.cdc .summary-fin-total-badge {
+      background: #ffc3bd;
+      color: #b12a18;
+    }
+
+    /* CARD VALOR FINAL GLOBAL */
+    .summary-fin-final-card {
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #f6acff;
+      box-shadow: 0 1px 4px rgba(9, 30, 66, .2);
+      font-size: 11px;
+       width: 100%;
+      max-width: 100%;
+      align-self: stretch;
+
+      display: flex;
+      justify-content: space-between;
+     
+      gap: 10px;
+    }
+
+    .summary-fin-final-title {
+      font-weight: 600;
+
+      color: var(--gray-800);
+    }
+
+    .summary-fin-final-hint {
+      color: var(--gray-600);
+    }
+
+    .summary-fin-final-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    /* PAINEL DE RESULTADOS GRANDES */
+    .results-layout {
+      display: grid;
+      grid-template-columns: 2fr 2fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .result-card {
+      border-radius: var(--radius-md);
+      background: #f7f8fc;
+      padding: 10px 12px 12px;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+
+    .result-title { font-weight: 600; }
+
+    .badge-pill {
+      border-radius: var(--radius-pill);
+      padding: 3px 8px;
+      font-size: 11px;
+      background: #e0e7ff;
+      color: var(--blue-main);
+    }
+
+    .target-values {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--gray-600);
+    }
+
+    .progress-track {
+      position: relative;
+      height: 5px;
+      background: var(--gray-100);
+      border-radius: 999px;
+      margin: 5px 0 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0052cc, #36b37e);
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--gray-600);
+      margin-bottom: 4px;
+    }
+
+    .step-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .steps-mercantil .step-dot.active {
+      background: var(--blue-main);
+      border-color: var(--blue-main);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .steps-estrela .step-dot.active {
+      background: var(--accent-orange);
+      border-color: var(--accent-orange);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .steps-servicos .step-dot.active {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .steps-cdc .step-dot.active {
+      background: var(--accent-red);
+      border-color: var(--accent-red);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .metric-main {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .metric-main.mercantil { color: #0052cc; }
+    .metric-main.star { color: #ff9f1a; }
+    .metric-main.servicos { color: #36b37e; }
+    .metric-main.cdc { color: #ff5630; }
+
+    .metric-lines { font-size: 11px; margin-top: 4px; }
+    .metric-lines p { margin: 1px 0; }
+
+    .metric-lines span.label {
+      color: var(--gray-600);
+      font-weight: 500;
+      margin-right: 4px;
+    }
+
+    .metric-lines .comp-block {
+      margin-top: 4px;
+      padding-top: 3px;
+      border-top: 1px dashed var(--gray-100);
+    }
+
+    .metric-lines .comp-block span.label {
+      color: var(--blue-dark);
+    }
+
+    .cta {
+      margin-top: 6px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 7px;
+      border-radius: 8px;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+    }
+
+    .cta-icon { font-size: 14px; }
+    .cta span.amount { font-weight: 700; }
+
+    .footer-note {
+      font-size: 10px;
+      color: var(--gray-600);
+      margin-top: 8px;
+    }
+
+    /* MODAL METAS (SIMPLIFICADO) */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px 18px;
+      max-width: 900px;
+      width: 90%;
+      max-height: 80vh;
+      box-shadow: 0 12px 30px rgba(9, 30, 66, .35);
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--gray-600);
+    }
+
+    .metas-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .metas-table th,
+    .metas-table td {
+      border: 1px solid var(--gray-100);
+      padding: 4px 6px;
+      text-align: center;
+    }
+
+    .metas-table thead th {
+      background: #f3f4fa;
+      font-weight: 600;
+    }
+
+    .metas-mercantil {
+      background: #e5efff;
+    }
+
+    .metas-servicos {
+      background: #e7f9f1;
+    }
+
+    .metas-cdc {
+      background: #ffe3e0;
+    }
+
+    .metas-estrela {
+      background: #fff4df;
+    }
+
+    .metas-note {
+      margin-top: 8px;
+      font-size: 10px;
+      color: var(--gray-600);
+    }
+
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--gray-100);
+      }
+      .content { padding: 16px; }
+      .results-layout { grid-template-columns: 1fr; }
+
+      .summary-days {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .summary-grid {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .summary-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .summary-item {
+        width: 100%;
+        min-width: 0;
+        align-items: flex-start;
+      }
+
+      .summary-highlight {
+        width: 100%;
+        max-width: 100%;
+        align-items: flex-start;
+        order: -1;
+      }
+
+      .summary-finance {
+        width: 100%;
+      }
+
+      .summary-fin-row {
+        flex-direction: column;
+        width: 100%;
+        max-width: none;
+      }
+
+      .summary-fin-group,
+      .summary-fin-line {
+        width: 100%;
+        flex: 1 1 auto;
+      }
+
+      .summary-fin-total-card {
+        width: 100%;
+      }
+
+      .summary-fin-final-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
